@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Live Sizing Window</title>
+    <style>
+        h1 {
+            margin-left: 16px;
+        }
+        .text-color {
+            color: red;
+            font-size: 48px;
+        }
+        .description {
+            padding: 5px 20px;
+            font-size: 20px;
+            width: 300px;
+            border: #333 solid 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="description">
+        <p>При изменении размеров окна браузера отображаются текущие значения размеров окна.</p>
+        <p>При клике на значении размер и цвет шрифта изменяется, при повторном клике возвращается к предыдущему состоянию.</p>
+    </div>
+    
+    <h1 class="inner-width"></h1>
+    <h1 class="outer-width"></h1>
+    <h1 class="inner-height"></h1>
+    <h1 class="outer-height"></h1>
+
+    <script>
+        const inWidth = document.querySelector('.inner-width');
+        const outWidth = document.querySelector('.outer-width');
+        const inHeight = document.querySelector('.inner-height');
+        const outHeight = document.querySelector('.outer-height');
+
+        inWidth.innerHTML = 'Inner Width: ' + window.innerWidth;
+        outWidth.innerHTML = 'Outer Width: ' + window.outerWidth;
+        inHeight.innerHTML = 'Inner Height: ' + window.innerHeight;
+        outHeight.innerHTML = 'Outer Height: ' + window.outerHeight;
+
+        window.addEventListener('resize', () => {
+            inWidth.innerHTML = 'Inner Width: ' + window.innerWidth;
+            outWidth.innerHTML = 'Outer Width: ' + window.outerWidth;
+            inHeight.innerHTML = 'Inner Height: ' + window.innerHeight;
+            outHeight.innerHTML = 'Outer Height: ' + window.outerHeight;
+        });
+
+        const headers = document.querySelectorAll('h1');
+
+        for (let i=0; i < headers.length; i++) {
+            headers[i].addEventListener('click', () => {
+                headers[i].classList.toggle('text-color');
+            });
+        }   
+    </script>
+</body>
+</html>
